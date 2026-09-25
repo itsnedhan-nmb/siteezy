@@ -1,0 +1,25 @@
+/* =========================================================
+   SiteEzy — demos.css
+   Shared ONLY by the four demo websites: the thin "you are
+   viewing a SiteEzy demo" bar and the return link. Everything
+   else about each demo (fonts, colors, layout) is written
+   inside that demo's own <style> block, on purpose — each
+   demo is meant to look, and feel, like its own real website,
+   not four skins of the same template.
+   ========================================================= */
+
+.siteezy-demo-bar{
+  position:sticky; top:0; z-index:999;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:10px; padding:10px 18px;
+  background:#16131F; color:#cfc9e0; font-family:'Poppins','Segoe UI',system-ui,sans-serif;
+  font-size:.78rem;
+}
+.siteezy-demo-bar a.back-link{
+  display:inline-flex; align-items:center; gap:7px; color:#fff; font-weight:700; font-size:.8rem;
+  padding:6px 12px; border-radius:999px; background:rgba(255,255,255,.08); transition:background .15s ease;
+}
+.siteezy-demo-bar a.back-link:hover{ background:rgba(255,255,255,.16); }
+.siteezy-demo-bar a.back-link svg{ width:14px; height:14px; }
+.siteezy-demo-bar .demo-tag{ opacity:.75; letter-spacing:.02em; }
+.siteezy-demo-bar .demo-tag b{ color:#fff; }
