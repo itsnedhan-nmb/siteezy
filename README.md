@@ -31,6 +31,7 @@ This guide assumes no prior web development experience. Take it step by step.
 ```
 siteezy/
 ├── index.html                 ← the main SiteEzy website
+├── disclaimer.html             ← the full Disclaimer & Terms page
 ├── css/
 │   ├── main.css                ← colors, fonts, layout for index.html
 │   └── demos.css                ← the small shared "Back to SiteEzy" bar used by all 4 demos
@@ -44,7 +45,7 @@ siteezy/
 │   ├── catalogue/index.html     ← ₹15,000 CATALOGUE demo — "Urban Threads" (has a working cart)
 │   └── flagship/index.html      ← ₹18,000 FLAGSHIP demo — "Nova Fitness Studio"
 ├── assets/
-│   ├── brand/                   ← SiteEzy's own logo files
+│   ├── brand/                   ← SiteEzy's own logo files (+ favicon.png)
 │   ├── cafe/ · interiors/ · urban-threads/ · nova-fitness/  ← the approved photos for each demo
 │   ├── _review/                 ← photos NOT used on the site (see ASSET-INVENTORY.md) — safe to ignore or delete
 │   └── ASSET-INVENTORY.md       ← notes on every supplied photo
@@ -102,6 +103,19 @@ Elements with a `data-i18n="some.key"` attribute are the ones controlled by
 actually displays; the text sitting inside the HTML tag itself is only a
 fallback shown before the page's script runs.
 
+**Changing which package is marked "Recommended":** in `index.html`, the
+`<article class="package-card fade-up pc-highlight" data-pkg="business">`
+card is the one with the emphasized border and the "Recommended" ribbon
+(`<div class="pc-ribbon">`). To move that emphasis to a different package,
+move the `pc-highlight` class and the `<div class="pc-ribbon">...</div>`
+line to that package's `<article>` instead — the ribbon automatically
+picks up that package's own accent color.
+
+**"Ask about this package" WhatsApp links:** each package card has a small
+link with `data-pkg-wa="mini|business|catalogue|flagship"`. Its message
+text is generated in `js/main.js` inside the `PACKAGE_WA_INFO` object — edit
+the text there if you want to change what that message says.
+
 ## 6. How to change a demo's content (menu items, services, products, etc.)
 
 Each demo is a single, self-contained HTML file — open
@@ -136,7 +150,59 @@ existing photo shows and where it's used). To swap a photo:
 To replace the SiteEzy logo itself, replace the files in `assets/brand/`
 (`siteezy-icon.png` and `siteezy-long.png`), keeping the same file names —
 or update the `src="assets/brand/..."` references in `index.html` if you
-rename them.
+rename them. `assets/brand/favicon.png` is a separate, square-cropped
+version of the icon used only for the browser-tab icon
+(`<link rel="icon">`) on every page — replace it the same way if you
+change the logo.
+
+## 6b. Before sending a demo-based build to a real client
+
+Each demo includes some illustrative content written for its fictional
+business — this is meant to look convincing on the demo itself, but must be
+reviewed before you reuse any of this as a starting point for a real
+client's site:
+
+- **Business demo stats** (`demos/business/index.html`, the `.stats-band`
+  section): "12 Years Experience," "140+ Projects," "98% Client
+  Satisfaction," "4.9★ Rating" belong to the fictional Arora Interiors.
+  Replace or remove these for a real client rather than leaving invented
+  numbers attached to their name.
+- **Flagship demo testimonials** (`demos/flagship/index.html`, the
+  `#testimonials` section and the bento quote tile): these are
+  illustrative quotes for the fictional Nova Fitness Studio, not real
+  reviews. Swap in a client's actual reviews (with permission) or remove
+  the section for a real build.
+- **Flagship demo team cards** (the `.team-grid` in `#team`): generic role
+  labels ("Head Coach," "Strength Coach," "Front Desk & Support") with
+  placeholder icons, not real staff. Update with the client's actual team
+  or keep it generic — just don't imply real people who don't exist.
+- **Catalogue product counts**: the current 7-product example is well
+  under the ₹15,000/₹18,000 product limits described below — a real
+  client's actual catalogue should be checked against those limits before
+  you commit to building it.
+
+## 7b. The Disclaimer & Terms page
+
+`disclaimer.html` is a full, standalone page (not just a homepage section)
+listing everything a SiteEzy package does and doesn't include. It's linked
+from the homepage's footer, from the short disclaimer preview section, and
+from the checkbox in the enquiry form. It uses the `disclaimer.*`
+translation keys — edit the wording in `js/language.js` exactly as
+described in section 5 above, and the grouped headings/content on
+`disclaimer.html` will update automatically.
+
+**The exact business-limit numbers** (revision rounds per package, and the
+catalogue product caps) live in these keys — this is the single source of
+truth if you ever want to change them:
+- `disclaimer.revMini` / `revBusiness` / `revCatalogue` / `revFlagship` —
+  revision rounds per package (currently 1 / 2 / 2 / 3).
+- `disclaimer.p17` — the ₹15,000 / ₹18,000 product caps (currently 20 / 30).
+- `disclaimer.p18` — the deployment/handover policy (files + a written
+  guide; hands-on setup is a separate, on-request service).
+
+If you change any of these numbers, update the matching FAQ answer
+(`faq.a7` for revisions, `faq.a9` for handover) so the homepage and the
+disclaimer page stay consistent with each other.
 
 ## 8. How to edit the Malayalam translations
 

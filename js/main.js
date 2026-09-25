@@ -50,7 +50,24 @@ function showToast(message) {
 function initHeroWhatsapp() {
   const links = document.querySelectorAll("[data-wa-generic]");
   links.forEach((a) => {
-    a.href = buildWhatsAppLink("Hi SiteEzy, I'd like to know more about your website packages.");
+    a.href = buildWhatsAppLink("Hi SiteEzy, I'd like to know more about your website packages and which one would suit my business.");
+  });
+}
+
+/* Package-specific "Ask about this package" links on each package card.
+   Keeps the WhatsApp message pre-filled with the exact package the visitor
+   was actually looking at, instead of a generic message. */
+const PACKAGE_WA_INFO = {
+  mini: "the ₹5,000 MINI package",
+  business: "the ₹10,000 BUSINESS package",
+  catalogue: "the ₹15,000 CATALOGUE package",
+  flagship: "the ₹18,000 FLAGSHIP package",
+};
+function initPackageWhatsapp() {
+  document.querySelectorAll("[data-pkg-wa]").forEach((a) => {
+    const pkg = a.getAttribute("data-pkg-wa");
+    const label = PACKAGE_WA_INFO[pkg] || "your website packages";
+    a.href = buildWhatsAppLink(`Hi SiteEzy, I'm interested in ${label}. Could you tell me more about what's included?`);
   });
 }
 
@@ -81,9 +98,9 @@ function initEnquiryForm() {
       return;
     }
 
-    let text = `Hi SiteEzy,\nMy name is ${name}.\nI run a ${business}.\nI'm interested in the ${pkgLabel} package.`;
+    let text = `Hi SiteEzy, I'd like to know more about your website packages.\nMy name is ${name}.\nI run a ${business}.\nI'm interested in the ${pkgLabel} package and would like to discuss which package would be suitable for my business.`;
     if (message) text += `\nAdditional details: ${message}`;
-    text += `\nI have read and understood the SiteEzy Website Services Disclaimer & Terms.`;
+    text += `\nI have read the SiteEzy Website Services Disclaimer & Terms.`;
 
     openWhatsApp(text);
   });
@@ -94,5 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initMobileNav();
   initFadeUp();
   initHeroWhatsapp();
+  initPackageWhatsapp();
   initEnquiryForm();
 });
