@@ -91,6 +91,7 @@ const translations = {
     "common.recommended": "Recommended",
     "common.askWhatsapp": "Ask about this package",
     "common.onRequest": "On request",
+    "common.domainNote": "+ domain charges",
 
     "why10k.eyebrow": "The Sweet Spot",
     "why10k.title": "Why most businesses land on ₹10,000",
@@ -332,6 +333,7 @@ const translations = {
     "common.recommended": "ശുപാർശ ചെയ്യുന്നത്",
     "common.askWhatsapp": "ഈ പാക്കേജിനെക്കുറിച്ച് ചോദിക്കുക",
     "common.onRequest": "ആവശ്യാനുസരണം",
+    "common.domainNote": "+ ഡൊമെയ്ൻ ചെലവുകൾ പ്രത്യേകം",
 
     "why10k.eyebrow": "മികച്ച തിരഞ്ഞെടുപ്പ്",
     "why10k.title": "എന്തുകൊണ്ട് കൂടുതൽ ബിസിനസുകളും ₹10,000 തിരഞ്ഞെടുക്കുന്നു",
